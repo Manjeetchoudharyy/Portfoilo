@@ -1053,7 +1053,6 @@
             font-size: 0.7rem;
         }
 
-        /* Status badge */
         .exp-status {
             display: inline-flex;
             align-items: center;
@@ -1461,6 +1460,27 @@
             color: var(--accent);
         }
 
+        .training-cert-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            padding: 10px 24px;
+            background: var(--gradient-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .training-cert-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--accent-glow);
+        }
+
         /* ===== CERTIFICATES SECTION ===== */
         .certificates {
             background: var(--bg-section);
@@ -1559,6 +1579,7 @@
             justify-content: center;
             color: var(--primary);
             font-size: 1.2rem;
+            flex-shrink: 0;
         }
 
         .cert-card h4 {
@@ -1979,7 +2000,10 @@
                     <div class="floating-badge">
                         <div class="badge-icon"><i class="fas fa-cloud"></i></div>
                         <div class="badge-text">
-                            <strong>
+                            <strong>Cloud</strong>
+                            <span>Computing</span>
+                        </div>
+                    </div>
                     <div class="floating-badge">
                         <div class="badge-icon"><i class="fas fa-brain"></i></div>
                         <div class="badge-text">
@@ -2202,15 +2226,13 @@
         </div>
     </section>
 
-    <!-- ===== EXPERIENCE SECTION (BEFORE PROJECTS) ===== -->
+    <!-- ===== EXPERIENCE SECTION ===== -->
     <section class="experience" id="experience">
         <div class="section-label reveal">PROFESSIONAL JOURNEY</div>
         <h2 class="section-title reveal">Experience</h2>
         <div class="section-line reveal"></div>
 
         <div class="experience-container">
-
-            <!-- Infosys Internship -->
             <div class="exp-card reveal">
                 <div class="exp-card-top">
                     <div class="exp-accent-bar"></div>
@@ -2231,10 +2253,10 @@
                                 <i class="fas fa-calendar-alt"></i> Jan 26 – Mar 26
                             </div>
                             <div class="exp-meta-item">
-                                <i class="fas fa-location-dot"></i> 
+                                <i class="fas fa-location-dot"></i> Remote
                             </div>
                             <div class="exp-meta-item">
-                                <i class="fas fa-clock"></i>
+                                <i class="fas fa-clock"></i> Virtual Internship
                             </div>
                         </div>
 
@@ -2251,7 +2273,6 @@
                             </ul>
                         </div>
 
-                        <!-- Project Highlight within Experience -->
                         <div class="exp-project-highlight">
                             <h5><i class="fas fa-diagram-project"></i> Internship Project: Crowd Count Detection System</h5>
                             <p>Developing a Crowd Count Detection System utilizing OpenCV, computer vision, and image processing techniques to detect and count people in real-time from images and live video feeds.</p>
@@ -2262,6 +2283,9 @@
                                 <span><i class="fas fa-circle"></i> Image Processing</span>
                                 <span><i class="fas fa-circle"></i> Real-time Detection</span>
                             </div>
+                            <a href="https://github.com/Manjeetchoudharyy/Crowd-Counting-System" target="_blank" class="training-cert-link" style="margin-top:15px;display:inline-flex;">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
                         </div>
 
                         <div class="exp-tags">
@@ -2275,7 +2299,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -2290,7 +2313,7 @@
                 <div class="project-header">
                     <div class="project-icon"><i class="fas fa-brain"></i></div>
                     <div class="project-links">
-                        <a href="https://github.com/Manjeetchoudharyy" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://github.com/Manjeetchoudharyy/Digital-Minimalism-Chatbot" target="_blank" title="View on GitHub"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
                 <div class="project-date">APR 25 – MAY 25</div>
@@ -2310,7 +2333,7 @@
                 <div class="project-header">
                     <div class="project-icon"><i class="fas fa-people-group"></i></div>
                     <div class="project-links">
-                        <a href="https://github.com/Manjeetchoudharyy" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://github.com/Manjeetchoudharyy/Crowd-Counting-System" target="_blank" title="View on GitHub"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
                 <div class="project-date">JAN 26 – MAR 26</div>
@@ -2398,6 +2421,9 @@
                 <span>Problem Solving</span>
                 <span>Memory Management</span>
             </div>
+            <a href="https://drive.google.com/file/d/1nuYkWGMp9Xzame5b0JkOFbM-kQRMC0hv/view?usp=sharing" target="_blank" class="training-cert-link">
+                <i class="fas fa-certificate"></i> View Certificate
+            </a>
         </div>
     </section>
 
@@ -2422,7 +2448,7 @@
                     </div>
                     <div class="cert-card-footer">
                         <span class="cert-date"><i class="fas fa-calendar"></i> Jul – Oct 25</span>
-                        <a href="#" class="cert-link">View <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://drive.google.com/file/d/1QU8fibRz5q94CpPoO8sw8bmIM_B1Mgxz/view?usp=sharing" target="_blank" class="cert-link">View <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -2441,7 +2467,7 @@
                     </div>
                     <div class="cert-card-footer">
                         <span class="cert-date"><i class="fas fa-calendar"></i> Nov – Dec 25</span>
-                        <a href="#" class="cert-link">View <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://drive.google.com/file/d/1vFHiQ4Yg0peFUrof-SR_FjsQ2hO1DCZV/view?usp=sharing" target="_blank" class="cert-link">View <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -2460,7 +2486,7 @@
                     </div>
                     <div class="cert-card-footer">
                         <span class="cert-date"><i class="fas fa-calendar"></i> Aug – Sep 25</span>
-                        <a href="#" class="cert-link">View <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://drive.google.com/file/d/1SHEakliEIXvHY5TcYXXkdXXAsbY5O2Ef/view?usp=drive_link" target="_blank" class="cert-link">View <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -2479,7 +2505,7 @@
                     </div>
                     <div class="cert-card-footer">
                         <span class="cert-date"><i class="fas fa-calendar"></i> Nov – Dec 25</span>
-                        <a href="#" class="cert-link">View <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://drive.google.com/file/d/1l5hCQauPawAleti22apcqdT8yqlex-ww/view?usp=drive_link" target="_blank" class="cert-link">View <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -2498,7 +2524,7 @@
                     </div>
                     <div class="cert-card-footer">
                         <span class="cert-date"><i class="fas fa-calendar"></i> Nov – Dec 25</span>
-                        <a href="#" class="cert-link">View <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://drive.google.com/drive/folders/1e_bitPpUmIRwxSgEx6dvDG5wgT2hKSaR?usp=drive_link" target="_blank" class="cert-link">View <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -2517,7 +2543,7 @@
                     </div>
                     <div class="cert-card-footer">
                         <span class="cert-date"><i class="fas fa-calendar"></i> Sep 24 – Dec 25</span>
-                        <a href="#" class="cert-link">View <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://drive.google.com/drive/folders/1neGvCN6dVLvhs-W0S8k9JHfXf6Q8zZti?usp=sharing" target="_blank" class="cert-link">View <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -2623,8 +2649,8 @@
         }
         animateCircle();
 
-        // Hover effects
-        const hoverElements = document.querySelectorAll('a, button, .skill-tab, .project-card, .stat-card, .skill-card, .training-card, .cert-card, .timeline-content, .exp-card, input, textarea');
+        // Hover effects on interactive elements
+        const hoverElements = document.querySelectorAll('a, button, .skill-tab, .project-card, .stat-card, .skill-card, .training-card, .cert-card, .timeline-content, .exp-card, .exp-project-highlight, input, textarea');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursorDot.classList.add('hover');
