@@ -196,12 +196,73 @@
             z-index: 1001;
         }
 
-        .hamburger span {
-            width: 28px;
-            height: 3px;
+        .resume-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
             background: var(--primary-dark);
-            border-radius: 3px;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(30,58,95,0.25);
+            letter-spacing: 0.3px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resume-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .resume-btn:hover::before {
+            left: 100%;
+        }
+
+        .resume-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30,58,95,0.35);
+        }
+
+        .resume-btn i {
+            font-size: 0.85rem;
+            animation: downloadBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes downloadBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(2px); }
+        }
+
+        /* Mobile responsive for resume button */
+        @media (max-width: 768px) {
+            .resume-btn {
+                padding: 8px 18px;
+                font-size: 0.8rem;
+                margin-right: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .resume-btn span-text {
+                display: none;
+            }
+            .resume-btn {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+            }
         }
 
         /* Sections Common */
@@ -2018,6 +2079,9 @@
             <li><a href="#certificates">Certificates</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
+        <a href="resume.pdf" download="Manjeet_Choudhary_Resume.pdf" class="resume-btn">
+            <i class="fas fa-download"></i> Resume
+        </a>
         <button class="hamburger" id="hamburger" onclick="toggleMenu()">
             <span></span><span></span><span></span>
         </button>
