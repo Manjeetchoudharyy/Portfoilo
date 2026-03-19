@@ -507,8 +507,45 @@
             position: relative;
             border: 3px solid var(--primary-light);
             animation: pulse-circle 4s ease-in-out infinite;
-            overflow: hidden;
             box-shadow: 0 10px 40px rgba(37,99,235,0.2);
+        }
+
+        .hero-img-wrapper {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 50%;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.5s ease, filter 0.5s ease;
+            filter: brightness(1.02) contrast(1.05);
+        }
+
+        .hero-img-wrapper:hover .hero-profile-img {
+            transform: scale(1.05);
+            filter: brightness(1.08) contrast(1.08);
+        }
+
+        .hero-img-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, rgba(30,58,95,0.15), transparent);
+            border-radius: 0 0 50% 50%;
+            z-index: 2;
+            pointer-events: none;
         }
 
         .floating-badge {
