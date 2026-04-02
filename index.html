@@ -2410,7 +2410,7 @@
             <div class="hero-content">
                 <p class="hero-greeting">Hello, I'm</p>
                 <h1 class="hero-name">Manjeet<br>Choudhary<span class="dot">.</span></h1>
-                <p class="hero-title"><span>An Aspiring Cyber Security Engineer</span></p>
+                <p class="hero-title"><span class="typing-text" id="typingText">Aspiring Cyber Security Engineer</span></p>
                 <p class="hero-description">A passionate Computer Science student at Lovely Professional University, specializing in Cyber Security and Python development. I love exploring network security, building AI-driven tools, and solving real-world problems.</p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary"><i class="fas fa-rocket"></i> View Projects</a>
@@ -2703,7 +2703,6 @@
                     </div>
                 </div>
 
-                
                 <!-- TOOLS -->
                 <div class="skills-tab-content" id="tab-tools">
                     <div class="skills-icon-grid">
@@ -3198,7 +3197,7 @@
             requestAnimationFrame(animCursor);
         })();
 
-        // PARTICLES — Blue themed for light mode
+        // PARTICLES
         var cvs = document.getElementById('particles-canvas');
         var c = cvs.getContext('2d');
         var pts = [];
@@ -3290,7 +3289,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // TYPING — Manjeet's roles
+        // TYPING
         var tt = ['Aspiring Cyber Security Engineer', 'Python Developer', 'Ethical Hacker', 'CSE Student at LPU', 'Full Stack Intern at Infosys', 'Cloud Computing Learner', 'AI/ML Enthusiast'];
         var ti = 0, ci = 0, del = false;
         var te = document.getElementById('typingText');
@@ -3304,55 +3303,69 @@
             setTimeout(type, d);
         })();
 
-       // ── SKILLS TABS — FIXED ──
+        // ═══════════════════════════════════════════════
+        // ── SKILLS TABS — FIXED (using correct selectors) ──
+        // ═══════════════════════════════════════════════
         var skillBtns = document.querySelectorAll('.skills-tab-btn');
         var skillPanes = document.querySelectorAll('.skills-tab-content');
-        
-        skillBtns.forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                var targetTab = this.getAttribute('data-tab');
-        
-                // Remove active from all buttons
-                skillBtns.forEach(function (b) {
-                    b.classList.remove('active');
-                });
-        
-                // Hide all panes
-                skillPanes.forEach(function (p) {
-                    p.classList.remove('active');
-                    p.style.display = 'none';
-                });
-        
-                // Activate clicked button
-                this.classList.add('active');
-        
-                // Show target pane
-                var targetPane = document.getElementById('tab-' + targetTab);
-                if (targetPane) {
-                    targetPane.style.display = 'block';
-                    targetPane.classList.add('active');
-        
-                    // Animate skill percent bars inside the newly shown tab
-                    targetPane.querySelectorAll('.skill-percent-fill').forEach(function (bar) {
-                        bar.style.width = '0';
-                        setTimeout(function () {
-                            bar.style.width = bar.getAttribute('data-percent') + '%';
-                        }, 100);
-                    });
-                }
+
+        function activateTab(name) {
+            // Deactivate all buttons
+            skillBtns.forEach(function (b) {
+                b.classList.remove('active');
             });
-        });
-        
-        // Initialize: show the default active tab and animate its bars
-        var activePane = document.querySelector('.skills-tab-content.active');
-        if (activePane) {
-            activePane.style.display = 'block';
-            activePane.querySelectorAll('.skill-percent-fill').forEach(function (bar) {
+
+            // Hide all panes
+            skillPanes.forEach(function (p) {
+                p.classList.remove('active');
+                p.style.display = 'none';
+            });
+
+            // Activate target button
+            var btn = document.querySelector('.skills-tab-btn[data-tab="' + name + '"]');
+            if (btn) btn.classList.add('active');
+
+            // Show target pane
+            var pane = document.getElementById('tab-' + name);
+            if (!pane) return;
+
+            pane.style.display = 'block';
+            pane.classList.add('active');
+
+            // Animate percent bars
+            pane.querySelectorAll('.skill-percent-fill').forEach(function (bar) {
+                bar.style.transition = 'none';
+                bar.style.width = '0';
+
                 setTimeout(function () {
+                    bar.style.transition = 'width 1.4s cubic-bezier(.4,0,.2,1)';
                     bar.style.width = bar.getAttribute('data-percent') + '%';
-                }, 500);
+                }, 150);
+            });
+
+            // Stagger card animations
+            pane.querySelectorAll('.skill-icon-card').forEach(function (card, i) {
+                card.style.transition = 'none';
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(16px)';
+
+                setTimeout(function () {
+                    card.style.transition = 'opacity .38s ease, transform .38s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, i * 65 + 50);
             });
         }
+
+        // Attach click listeners to all tab buttons
+        skillBtns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                activateTab(this.getAttribute('data-tab'));
+            });
+        });
+
+        // Show languages tab by default
+        activateTab('languages');
 
         // SCROLL REVEAL
         function reveal() {
@@ -3463,3 +3476,4 @@
 </body>
 
 </html>
+            
