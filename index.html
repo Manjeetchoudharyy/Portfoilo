@@ -3304,71 +3304,55 @@
             setTimeout(type, d);
         })();
 
-        // ── SKILLS TABS — FIXED ──
-        var skBtns = document.querySelectorAll('.skb');
-        var skPanes = document.querySelectorAll('.skp');
+       // ── SKILLS TABS — FIXED ──
+        var skillBtns = document.querySelectorAll('.skills-tab-btn');
+        var skillPanes = document.querySelectorAll('.skills-tab-content');
         
-        // Hide all panes with JS so CSS display:none has no conflicts
-        skPanes.forEach(function (p) {
-            p.style.display = 'none';
+        skillBtns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var targetTab = this.getAttribute('data-tab');
+        
+                // Remove active from all buttons
+                skillBtns.forEach(function (b) {
+                    b.classList.remove('active');
+                });
+        
+                // Hide all panes
+                skillPanes.forEach(function (p) {
+                    p.classList.remove('active');
+                    p.style.display = 'none';
+                });
+        
+                // Activate clicked button
+                this.classList.add('active');
+        
+                // Show target pane
+                var targetPane = document.getElementById('tab-' + targetTab);
+                if (targetPane) {
+                    targetPane.style.display = 'block';
+                    targetPane.classList.add('active');
+        
+                    // Animate skill percent bars inside the newly shown tab
+                    targetPane.querySelectorAll('.skill-percent-fill').forEach(function (bar) {
+                        bar.style.width = '0';
+                        setTimeout(function () {
+                            bar.style.width = bar.getAttribute('data-percent') + '%';
+                        }, 100);
+                    });
+                }
+            });
         });
         
-        function activateTab(name) {
-        
-            // Deactivate all
-            skBtns.forEach(function (b) {
-                b.classList.remove('active');
-            });
-        
-            skPanes.forEach(function (p) {
-                p.classList.remove('active');
-                p.style.display = 'none';
-            });
-        
-            // Activate target button
-            var btn = document.querySelector('.skb[data-tab="' + name + '"]');
-            if (btn) btn.classList.add('active');
-        
-            // Show target pane
-            var pane = document.getElementById('tab-' + name);
-            if (!pane) return;
-        
-            pane.style.display = 'block';
-            pane.classList.add('active');
-        
-            // Animate bars
-            pane.querySelectorAll('.skbf').forEach(function (bar) {
-                bar.style.transition = 'none';
-                bar.style.width = '0';
-        
+        // Initialize: show the default active tab and animate its bars
+        var activePane = document.querySelector('.skills-tab-content.active');
+        if (activePane) {
+            activePane.style.display = 'block';
+            activePane.querySelectorAll('.skill-percent-fill').forEach(function (bar) {
                 setTimeout(function () {
-                    bar.style.transition = 'width 1.4s cubic-bezier(.4,0,.2,1)';
-                    bar.style.width = bar.getAttribute('data-p') + '%';
-                }, 150);
-            });
-        
-            // Stagger cards
-            pane.querySelectorAll('.skc').forEach(function (card, i) {
-                card.style.transition = 'none';
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(16px)';
-        
-                setTimeout(function () {
-                    card.style.transition = 'opacity .38s ease, transform .38s ease';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, i * 65 + 50);
+                    bar.style.width = bar.getAttribute('data-percent') + '%';
+                }, 500);
             });
         }
-        
-        skBtns.forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                activateTab(btn.getAttribute('data-tab'));
-            });
-        });
-        
-        // Show languages by default
-        activateTab('languages');
 
         // SCROLL REVEAL
         function reveal() {
