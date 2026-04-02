@@ -3275,7 +3275,6 @@
 
             reveal();
             counters();
-            chkBars();
         }, 16));
 
         // MOBILE MENU
@@ -3305,45 +3304,71 @@
             setTimeout(type, d);
         })();
 
-        // SKILLS TABS
-        var tbs = document.querySelectorAll('.skills-tab-btn');
-        var tcs = document.querySelectorAll('.skills-tab-content');
-        tbs.forEach(function (btn) {
+        // ── SKILLS TABS — FIXED ──
+        var skBtns = document.querySelectorAll('.skb');
+        var skPanes = document.querySelectorAll('.skp');
+        
+        // Hide all panes with JS so CSS display:none has no conflicts
+        skPanes.forEach(function (p) {
+            p.style.display = 'none';
+        });
+        
+        function activateTab(name) {
+        
+            // Deactivate all
+            skBtns.forEach(function (b) {
+                b.classList.remove('active');
+            });
+        
+            skPanes.forEach(function (p) {
+                p.classList.remove('active');
+                p.style.display = 'none';
+            });
+        
+            // Activate target button
+            var btn = document.querySelector('.skb[data-tab="' + name + '"]');
+            if (btn) btn.classList.add('active');
+        
+            // Show target pane
+            var pane = document.getElementById('tab-' + name);
+            if (!pane) return;
+        
+            pane.style.display = 'block';
+            pane.classList.add('active');
+        
+            // Animate bars
+            pane.querySelectorAll('.skbf').forEach(function (bar) {
+                bar.style.transition = 'none';
+                bar.style.width = '0';
+        
+                setTimeout(function () {
+                    bar.style.transition = 'width 1.4s cubic-bezier(.4,0,.2,1)';
+                    bar.style.width = bar.getAttribute('data-p') + '%';
+                }, 150);
+            });
+        
+            // Stagger cards
+            pane.querySelectorAll('.skc').forEach(function (card, i) {
+                card.style.transition = 'none';
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(16px)';
+        
+                setTimeout(function () {
+                    card.style.transition = 'opacity .38s ease, transform .38s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, i * 65 + 50);
+            });
+        }
+        
+        skBtns.forEach(function (btn) {
             btn.addEventListener('click', function () {
-                var tgt = btn.getAttribute('data-tab');
-                tbs.forEach(function (b) { b.classList.remove('active'); });
-                tcs.forEach(function (tc) { tc.classList.remove('active'); });
-                btn.classList.add('active');
-                var el = document.getElementById('tab-' + tgt);
-                el.classList.add('active');
-                el.style.animation = 'none'; el.offsetHeight; el.style.animation = 'skillsFadeIn 0.5s ease';
-                animBars(el);
-                el.querySelectorAll('.skill-icon-card').forEach(function (card, i) {
-                    card.style.opacity = '0'; card.style.transform = 'translateY(20px)';
-                    setTimeout(function () {
-                        card.style.transition = 'all 0.5s ease';
-                        card.style.opacity = '1'; card.style.transform = 'translateY(0)';
-                    }, i * 60);
-                });
+                activateTab(btn.getAttribute('data-tab'));
             });
         });
-
-        function animBars(container) {
-            container.querySelectorAll('.skill-percent-fill').forEach(function (bar) {
-                var p = bar.getAttribute('data-percent');
-                bar.style.width = '0';
-                setTimeout(function () { bar.style.width = p + '%'; }, 100);
-            });
-        }
-
-        function chkBars() {
-            var act = document.querySelector('.skills-tab-content.active');
-            if (!act) return;
-            var r = act.getBoundingClientRect();
-            if (r.top < window.innerHeight - 50 && !act.dataset.animated) {
-                act.dataset.animated = 'true'; animBars(act);
-            }
-        }
+        
+        // Show languages by default
+        activateTab('languages');
 
         // SCROLL REVEAL
         function reveal() {
@@ -3438,7 +3463,6 @@
         // INITIAL ANIMATIONS
         window.addEventListener('load', function () {
             setTimeout(function () {
-                chkBars();
                 var act = document.querySelector('.skills-tab-content.active');
                 if (act) {
                     act.querySelectorAll('.skill-icon-card').forEach(function (card, i) {
